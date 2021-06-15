@@ -1,0 +1,14 @@
+static def addRepos(RepositoryHandler handler) {
+
+//    handler.maven {
+//        url 'http://127.0.0.1:8081/repository/maven-public/'
+//    }
+
+    handler.google()
+    handler.mavenCentral()
+    handler.jcenter()
+    handler.maven { url 'https://jitpack.io' }
+}
+ext.addRepos = this.&addRepos
+
+
