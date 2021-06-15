@@ -18,15 +18,15 @@ if (isReleaseBuild()) {
 
 //从项目gradle.properties中读取Nexus服务器登录用户名
 def getRepositoryUserName() {
-    return hasProperty('NEXUS_USERNAME') ? NEXUS_USERNAME : ""
+    return hasProperty('NEXUS_USERNAME') ? rootProject.ext.NEXUS_USERNAME : ""
 }
 //读取Nexus服务器登录密码
 def getRepositoryPassword() {
-    return hasProperty('NEXUS_PASSWORD') ? NEXUS_PASSWORD : ""
+    return hasProperty('NEXUS_PASSWORD') ? rootProject.ext.NEXUS_PASSWORD : ""
 }
-//通过gradle.properties中VERSION_NAME常量判断是否是Release版本
+//通过VERSION_NAME常量判断是否是Release版本
 def isReleaseBuild() {
-    return !VERSION_NAME.contains("SNAPSHOT")
+    return !rootProject.ext.httplibrary_pom["VERSION_NAME"].contains("SNAPSHOT")
 }
 
 //配置阶段要结束，项目评估完会走到这一步
@@ -41,11 +41,11 @@ afterEvaluate { project ->
                 }
 
                 //构件标识符
-                pom.artifactId = POM_ARTIFACT_ID
+                pom.artifactId = rootProject.ext.httplibrary_pom["POM_ARTIFACT_ID"]
                 //全球唯一标识符
-                pom.groupId = POM_GROUP_ID
+                pom.groupId = rootProject.ext.httplibrary_pom["POM_GROUP_ID"]
                 //构件版本
-                pom.version = VERSION_NAME
+                pom.version = rootProject.ext.httplibrary_pom["VERSION_NAME"]
 
                 //用户名和密码授权验证
                 repository(url: repositoryUrl) {
@@ -55,37 +55,37 @@ afterEvaluate { project ->
                 //配置pom.xml
                 pom.project {
                     //库名称
-                    name POM_NAME
+                    name rootProject.ext.httplibrary_pom["POM_NAME"]
                     //打包下载上传的格式
-                    packaging POM_PACKAGING
+                    packaging rootProject.ext.httplibrary_pom["POM_PACKAGING"]
                     //描述信息
-                    description POM_DESCRIPTION
+                    description rootProject.ext.httplibrary_pom["POM_DESCRIPTION"]
                     //项目地址
                     url POM_URL
                     //scm(software configuration management)标签允许你配置你的代码库
                     //不用SCM可忽略，随意配置
                     scm {
-                        url POM_SCM_URL
-                        connection POM_SCM_CONNECTION
-                        developerConnection POM_SCM_DEV_CONNECTION
+                        url rootProject.ext.POM_SCM_URL
+                        connection rootProject.ext.POM_SCM_CONNECTION
+                        developerConnection rootProject.ext.POM_SCM_DEV_CONNECTION
                     }
                     //软件许可证书信息
                     licenses {
                         license {
                             //license用于法律上的名称
-                            name POM_LICENCE_NAME
+                            name rootProject.ext.POM_LICENCE_NAME
                             //官方的license正文页面的URL
-                            url POM_LICENCE_URL
+                            url rootProject.ext.POM_LICENCE_URL
                             //<!--项目分发的主要方式： repo，可以从Maven库下载
                             //manual， 用户必须手动下载和安装依赖-->
-                            distribution POM_LICENCE_DIST
+                            distribution rootProject.ext.POM_LICENCE_DIST
                         }
                     }
                     //开发者信息
                     developers {
                         developer {
-                            id POM_DEVELOPER_ID
-                            name POM_DEVELOPER_NAME
+                            id rootProject.ext.POM_DEVELOPER_ID
+                            name rootProject.ext.POM_DEVELOPER_NAME
                         }
                     }
                 }

@@ -44,7 +44,7 @@ object AndroidKTX:IApp{
         }
         MMKV.initialize(context);
         PictureAppMaster.getInstance().app = this
-        XLog.init(if (BuildConfig.DEBUG) LogLevel.ALL else LogLevel.NONE)
+        XLog.init(if (isDebug) LogLevel.ALL else LogLevel.NONE)
     }
 
 

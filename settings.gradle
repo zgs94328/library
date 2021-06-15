@@ -1,3 +1,4 @@
-include ':Baselibrary'
+include ':BaseLibrary'
+include ':HttpLibrary'
 include ':app'
 rootProject.name = "ZgsLibraryDemo"

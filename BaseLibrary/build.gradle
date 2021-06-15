@@ -3,7 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'maven'
-apply from: "../maven_push.gradle"
+apply from: "../baselibrary_maven_push.gradle"
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
