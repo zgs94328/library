@@ -1,3 +1,4 @@
+include ':CommonLibrary'
 include ':BaseLibrary'
 include ':HttpLibrary'
 include ':app'
