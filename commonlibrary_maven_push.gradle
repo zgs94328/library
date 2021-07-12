@@ -26,7 +26,7 @@ def getRepositoryPassword() {
 }
 //通过VERSION_NAME常量判断是否是Release版本
 def isReleaseBuild() {
-    return !rootProject.ext.base_library_pom["VERSION_NAME"].contains("SNAPSHOT")
+    return !rootProject.ext.common_library_pom["VERSION_NAME"].contains("SNAPSHOT")
 }
 
 //配置阶段要结束，项目评估完会走到这一步
@@ -41,11 +41,11 @@ afterEvaluate { project ->
                 }
 
                 //构件标识符
-                pom.artifactId = rootProject.ext.base_library_pom["POM_ARTIFACT_ID"]
+                pom.artifactId = rootProject.ext.common_library_pom["POM_ARTIFACT_ID"]
                 //全球唯一标识符
-                pom.groupId = rootProject.ext.base_library_pom["POM_GROUP_ID"]
+                pom.groupId = rootProject.ext.common_library_pom["POM_GROUP_ID"]
                 //构件版本
-                pom.version = rootProject.ext.base_library_pom["VERSION_NAME"]
+                pom.version = rootProject.ext.common_library_pom["VERSION_NAME"]
 
                 //用户名和密码授权验证
                 repository(url: repositoryUrl) {
@@ -55,11 +55,11 @@ afterEvaluate { project ->
                 //配置pom.xml
                 pom.project {
                     //库名称
-                    name rootProject.ext.base_library_pom["POM_NAME"]
+                    name rootProject.ext.common_library_pom["POM_NAME"]
                     //打包下载上传的格式
-                    packaging rootProject.ext.base_library_pom["POM_PACKAGING"]
+                    packaging rootProject.ext.common_library_pom["POM_PACKAGING"]
                     //描述信息
-                    description rootProject.ext.base_library_pom["POM_DESCRIPTION"]
+                    description rootProject.ext.common_library_pom["POM_DESCRIPTION"]
                     //项目地址
                     url POM_URL
                     //scm(software configuration management)标签允许你配置你的代码库

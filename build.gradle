@@ -1,8 +1,8 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
-    apply from: "/Users/zgs/Documents/config.gradle"
-//    apply from: "config.gradle"
-    ext.kotlin_version = "1.4.0"
+//    apply from: "https://gitlab.com/api/v4/projects/28004388/repository/files/config.gradle/raw?ref=main&private_token=UdSQZxHZ4eTcin_WBzxp"
+    apply from: "config.gradle"
+    ext.kotlin_version = "1.3.72"
     addRepos(repositories)
     dependencies {
         classpath "com.android.tools.build:gradle:4.1.0"
@@ -11,13 +11,11 @@ buildscript {
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
-
 }
 
 allprojects {
     addRepos(repositories)
 }
-
 
 task clean(type: Delete) {
     delete rootProject.buildDir

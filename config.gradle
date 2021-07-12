@@ -8,58 +8,83 @@ static def addRepos(RepositoryHandler handler) {
     handler.maven {
         url 'http://127.0.0.1:8081/repository/maven-public/'
     }
-
+    handler.maven {
+        url 'http://127.0.0.1:8081/repository/maven-snapshots/'
+    }
 }
+
 ext.addRepos = this.&addRepos
 
+
 ext {
+    //version配置
+    //要发布的版本好,snapshots 版本可以使用格式 1.0.0-SNAPSHOT
     version = [
-            "moduleHomeVersion": "1.0.3",
-            "libBaseVersion": "1.0.0",
-            "libHttpVersion": "1.0.0",
+            "moduleHomeVersion": "1.0.5-SNAPSHOT",
+            "baseLibraryVersion": "1.3.0-SNAPSHOT",
+            "httpLibraryVersion": "1.3.0-SNAPSHOT",
+            "commonLibraryVersion": "1.0.2-SNAPSHOT",
 
     ]
     dependencies = [
             "moduleHome": "com.zgs.module.home:zgs:${version["moduleHomeVersion"]}",
-            "moduleHome": "com.zgs.module.home:zgs:${version["moduleHomeVersion"]}",
-            "moduleHome": "com.zgs.module.home:zgs:${version["moduleHomeVersion"]}",
+            "baseLibrary": "com.zgs.baselibrary:zgs:${version["baseLibraryVersion"]}",
+            "httpLibrary": "com.zgs.httplibrary:zgs:${version["httpLibraryVersion"]}",
+            "commonLibrary": "com.zgs.commonlibrary:zgs:${version["commonLibraryVersion"]}",
 
     ]
 
     // nexus服务器登陆时候的用户名/密码
-    NEXUS_USERNAME="admin"
-    NEXUS_PASSWORD="admin123"
+    NEXUS_USERNAME = "admin"
+    NEXUS_PASSWORD = "admin123"
     // POM文件中指向你网站的地址
-    POM_URL= "https://github.com/zgs94328"
+    POM_URL = "https://github.com/zgs94328"
     //SCM是指版本管理工具
-    POM_SCM_URL="https://github.com/"
-    POM_SCM_CONNECTION="https://github.com/zgs94328"
-    POM_SCM_DEV_CONNECTION="https://github.com/zgs94328"
+    POM_SCM_URL = "https://github.com/"
+    POM_SCM_CONNECTION = "https://github.com/zgs94328"
+    POM_SCM_DEV_CONNECTION = "https://github.com/zgs94328"
     //你的开放协议相关信息
-    POM_LICENCE_NAME= "The Apache License, Version 2.0"
-    POM_LICENCE_URL= "http://www.apache.org/licenses/LICENSE-2.0.txt"
+    POM_LICENCE_NAME = "The Apache License, Version 2.0"
+    POM_LICENCE_URL = "http://www.apache.org/licenses/LICENSE-2.0.txt"
     //POM_LICENCE_URL= "https://github.com/facebook/react-native/blob/master/LICENSE"
     //POM_LICENCE_NAME=" BSD License"
-    POM_LICENCE_DIST="repo"
+    POM_LICENCE_DIST = "repo"
     // 开发者的相关信息
-    POM_DEVELOPER_ID="zgs"
-    POM_DEVELOPER_NAME="zgs"
+    POM_DEVELOPER_ID = "zgs"
+    POM_DEVELOPER_NAME = "zgs"
 
-    baselibrary_pom = [
+    module_home_pom = [
+            POM_GROUP_ID   : "com.zgs.module.home",//# 在POM文件中使用的group ID
+            POM_NAME       : "zgs module home",//库名称
+            POM_ARTIFACT_ID: "zgs", //artifactId
+            POM_PACKAGING  : "aar",//库的打包格式为aar, 常见的还有jar
+            POM_DESCRIPTION: "zgs module home",//库的描述,说明他是干啥的
+            VERSION_NAME   : "${version["moduleHomeVersion"]}"//要发布的版本好,snapshots 版本可以使用格式 1.0.0-SNAPSHOT
+    ]
+
+
+    base_library_pom = [
             POM_GROUP_ID   : "com.zgs.baselibrary",//# 在POM文件中使用的group ID
             POM_NAME       : "zgs BaseLibrary",//库名称
             POM_ARTIFACT_ID: "zgs", //artifactId
             POM_PACKAGING  : "aar",//库的打包格式为aar, 常见的还有jar
             POM_DESCRIPTION: "base library",//库的描述,说明他是干啥的
-            VERSION_NAME   : "1.0.0-SNAPSHOT"//要发布的版本好,snapshots 版本可以使用格式 1.0.0-SNAPSHOT
+            VERSION_NAME   : "${version["baseLibraryVersion"]}"//要发布的版本好,snapshots 版本可以使用格式 1.0.0-SNAPSHOT
     ]
-    httplibrary_pom = [
+    http_library_pom = [
             POM_GROUP_ID   : "com.zgs.httplibrary",//# 在POM文件中使用的group ID
             POM_NAME       : "zgs HttpLibrary",//库名称
             POM_ARTIFACT_ID: "zgs", //artifactId
             POM_PACKAGING  : "aar",//库的打包格式为aar, 常见的还有jar
             POM_DESCRIPTION: "http library",//库的描述,说明他是干啥的
-            VERSION_NAME   : "1.0.0"//要发布的版本好,snapshots 版本可以使用格式 1.0.0-SNAPSHOT
+            VERSION_NAME   : "${version["httpLibraryVersion"]}"//要发布的版本好,snapshots 版本可以使用格式 1.0.0-SNAPSHOT
     ]
-
+    common_library_pom = [
+            POM_GROUP_ID   : "com.zgs.commonlibrary",//# 在POM文件中使用的group ID
+            POM_NAME       : "zgs commonlibrary",//库名称
+            POM_ARTIFACT_ID: "zgs", //artifactId
+            POM_PACKAGING  : "aar",//库的打包格式为aar, 常见的还有jar
+            POM_DESCRIPTION: "common library",//库的描述,说明他是干啥的
+            VERSION_NAME   : "${version["commonLibraryVersion"]}"//要发布的版本好,snapshots 版本可以使用格式 1.0.0-SNAPSHOT
+    ]
 }

@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'maven'
 apply from: "../baselibrary_maven_push.gradle"
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
@@ -66,7 +67,7 @@ dependencies {
     api 'com.scwang.smart:refresh-header-classics:2.0.1'    //经典刷新头
     api 'com.scwang.smart:refresh-footer-classics:2.0.1'    //经典加载
 
-    
+
     //agentweb
     api 'com.just.agentweb:agentweb-androidx:4.1.4' // (必选)
     api 'com.just.agentweb:filechooser-androidx:4.1.4'// (可选)

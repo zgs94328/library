@@ -18,7 +18,7 @@ object Http {
      */
     fun init(context: Context,
              isDebug: Boolean = true,
-             defaultLogTag: String = Http.defaultLogTag,
+             defaultLogTag: String = Http.defaultLogTag
 
     ) {
         Http.context = context

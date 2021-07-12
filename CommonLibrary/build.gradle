@@ -1,8 +1,6 @@
-plugins {
-    id 'com.android.library'
-    id 'kotlin-android'
-}
-
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply from: "../commonlibrary_maven_push.gradle"
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
@@ -41,4 +39,7 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation rootProject.ext.dependencies["baseLibrary"]
+    implementation rootProject.ext.dependencies["httpLibrary"]
+
 }
