@@ -10,18 +10,23 @@ import androidx.databinding.ViewDataBinding
  * Create by dance, at 2019/5/16
  */
 abstract class BaseDBActivity<T:ViewDataBinding> : AppCompatActivity() {
-   private lateinit var mDatabind: T
+    private lateinit var mDatabind: T
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        beforeInitLayout(savedInstanceState)
         mDatabind = DataBindingUtil.setContentView(this, getLayoutId())
         mDatabind.lifecycleOwner = this
-        initView()
+        initView(savedInstanceState)
         initData()
     }
 
     protected abstract fun getLayoutId(): Int
-    protected abstract fun initView()
+    protected abstract fun initView(savedInstanceState: Bundle?)
     protected abstract fun initData()
+    protected abstract fun observe()
+    private fun beforeInitLayout(savedInstanceState: Bundle?){
+
+    }
 
 
 }
