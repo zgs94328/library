@@ -40,4 +40,10 @@ class FragmentWrapperActivity<T: ViewDataBinding> : TitleBarActivity<T>() {
             bundle))
         XLog.e(bundle)
     }
+
+    override fun initView(savedInstanceState: Bundle?) {
+    }
+
+    override fun observe() {
+    }
 }

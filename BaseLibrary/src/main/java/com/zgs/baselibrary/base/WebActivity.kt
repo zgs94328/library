@@ -149,4 +149,7 @@ open class WebActivity : TitleBarActivity<KtxActivityWebBinding>(){
         }
         super.onDestroy()
     }
+
+    override fun observe() {
+    }
 }

@@ -242,6 +242,14 @@ class SuperLayout @JvmOverloads constructor(context: Context, attributeSet: Attr
             applyAttr()
             applySelf()
         }
+    var mlineMargin = 0
+        set(value) {
+            field = value
+            applyAttr()
+            applySelf()
+        }
+
+
     var mbottomLineColor = 0
         set(value) {
             field = value

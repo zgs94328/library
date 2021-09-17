@@ -1,12 +1,12 @@
 package com.zgs.baselibrary.base
 
+import android.os.Bundle
 import androidx.databinding.ViewDataBinding
-import com.zgs.baselibrary.base.TitleBarActivity
 import com.zgs.baselibrary.core.postDelay
 
 abstract class StateTitleBarActivity<T: ViewDataBinding> : TitleBarActivity<T>(){
-    override fun initView() {
-        super.initView()
+    override fun initView(savedInstanceState: Bundle?) {
+        super.initView(savedInstanceState)
         showLoading()
         if(autoShowContent()) postDelay(400){showContent()}
     }

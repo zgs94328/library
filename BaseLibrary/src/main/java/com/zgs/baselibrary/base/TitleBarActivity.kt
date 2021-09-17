@@ -1,5 +1,6 @@
 package com.zgs.baselibrary.base
 
+import android.os.Bundle
 import android.view.View
 import androidx.databinding.ViewDataBinding
 import com.zgs.baselibrary.R
@@ -21,7 +22,7 @@ abstract class TitleBarActivity<T: ViewDataBinding>(private var showTitle:Boolea
         return R.layout._ktx_activity_titlebar
     }
 
-    override fun initView() {
+    override fun initView(savedInstanceState: Bundle?) {
         flBody.addView(View.inflate(this, getBodyLayout(), null))
         if(!showTitle){
             hideTitleBar()
